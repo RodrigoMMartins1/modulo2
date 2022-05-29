@@ -1,0 +1,33 @@
+
+body{
+    background-color: aqua;
+    margin: 0px;
+}
+.texto{
+    font-weight: bold;
+}
+
+header{
+
+    background-color: black;  
+    padding-left: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+
+}
+
+h1{
+    color: white;
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin-left: 3em;
+}
+
+img{
+
+    border-radius: 100%;
+
+
+}
