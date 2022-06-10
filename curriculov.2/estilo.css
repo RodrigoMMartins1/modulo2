@@ -1,0 +1,31 @@
+body {
+    background-color: aqua;
+  }
+  
+  h1 {
+    background-color: darkgoldenrod;
+  }
+  
+  h2 {
+    background-color: rgb(221, 221, 221);
+    text-align: center;
+  }
+  
+  li {
+    line-height: 2rem;
+  }
+  #info{
+   background-color: aliceblue;
+  }
+ 
+  
+  @media (min-width: 768px) {
+    h2 {
+      min-height: 100px;
+      vertical-align: middle;
+      padding-top: 5%;
+    }
+
+    
+  }
+  
