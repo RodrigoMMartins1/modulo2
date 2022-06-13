@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exercício 1</title>
+</head>
+
+<body>
+  <h1>Ex 1</h1>
+  <label for="numero">Informe um número inteiro de três digitos:</label>
+  <input type="number" id="number">
+  <button id="submit">Calcular</button>
+  <div id="resultado"></div>
+
+  <script>
+    // Crie uma página web na qual o usuário informe um número inteiro de três dígitos e quando o usuário indicar que deseja que o cálculo seja realizado (pressionar um botão), seja exibido se o dígito da centena é par ou ímpar.
+    const button = document.getElementById('submit');
+    button.addEventListener('click', function () {
+      const n = document.getElementById('number').value;
+      if (   (numero.length === 3 && numero[0] !== '-') || (numero.length === 4 && numero[0] === '-')
+      ) {
+        const nInt = parseInt(numero);
+        const centena = parseInt(numero.substring(0, numeroInt > 0 ? 1 : 2));
+        if (centena % 2 == 0) {
+          document.getElementById('resultado').innerHTML = `O dígito da centena (${centena}) é par.`;
+        } else {
+          document.getElementById('resultado').innerHTML = `O dígito da centena (${centena}) é ímpar.`;
+        }
+      } else {
+        document.getElementById('resultado').innerHTML = `O número informado não é de três dígitos.`;
+      }
+    });
+  </script>
+</body>
+
+</html>

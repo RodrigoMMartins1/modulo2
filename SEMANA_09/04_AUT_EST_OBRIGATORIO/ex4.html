@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exercício 4</title>
+</head>
+
+<body>
+  <h1>Ex 4</h1>
+  <label for="numero">Número inteiro positivo:</label>
+  <input type="number" id="number" min="0">
+  <button id="submit">Calcular</button>
+  <div id="result"></div>
+  <script>
+    // A série de Fibonacci é formada pela sequência [0] 1, 1, 2, 3, 5, 8, 13, 21, 34, ... Escreva um programa que apresente a série de Fibonacci até o n-ésimo termo (n > 0).
+    // Obter a série de fibonacci até o n-ésimo termo (n > 0)
+
+    const fibonacci = (n) => {
+
+      if (n <= 2) return 1;
+
+      var a = 0; 
+      var b = 1;
+      var c = 0; 
+      for (var i = 1; i < n; i++) {
+        c = a + b; 
+        a = b; 
+        b = c; 
+      }
+      return c; 
+    };
+
+
+    const button = document.getElementById('submit');
+    button.addEventListener('click', () => {
+      const number = parseInt(document.getElementById('number').value);
+      const result = document.getElementById('result');
+      result.innerHTML = `O n-ésimo termo da série de Fibonacci é ${fibonacci(number)}. A série de Fibonacci até o n-ésimo termo é:`;
+      for (let i = 1; i <= number; i++) {
+        result.innerHTML += ` ${fibonacci(i)}`;
+      }
+    });
+  </script>
+</body>
+
+</html>

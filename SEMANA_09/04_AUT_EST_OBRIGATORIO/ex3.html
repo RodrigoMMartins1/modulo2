@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exercício 3</title>
+</head>
+
+<body>
+  <h1>Ex 3</h1>
+  <label for="name1">Primeiro nome:</label>
+  <input type="nome" id="name1">
+  <label for="name2">Segundo nome:</label>
+  <input type="nome" id="name2">
+  <label for="name3">Terceiro nome:</label>
+  <input type="nome" id="name3">
+  <button id="submit">Ordenar</button>
+  <div id="result"></div>
+  <script>
+    // Crie uma página web na qual o usuário informe três nomes e quando o usuário indicar que deseja que o cálculo seja realizado (pressionar um botão), os nomes são exibidos em ordem alfabética crescente.
+    const button = document.getElementById('submit');
+    button.addEventListener('click', () => {
+      const name1 = document.getElementById('name1').value;
+      const name2 = document.getElementById('name2').value;
+      const name3 = document.getElementById('name3').value;
+      const names = [name1, name2, name3];
+      const result = document.getElementById('result');
+      result.innerHTML = `Os nomes informados são: ${names.sort()}.`;
+    });
+  </script>
+</body>
+
+</html>
