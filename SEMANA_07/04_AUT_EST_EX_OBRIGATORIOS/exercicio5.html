@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exercício 5</title>
+</head>
+
+<body>
+  <h1>Exercício 5</h1>
+  <p>Notas dos Alunos</p>
+  <label for="students">Alunos</label>
+  <input type="number" step="1" min="0" id="students" name="students">
+  <button type="submit" id="submitStudents">Informar quantidade de alunos</button>
+  <script>
+    let studentAvgs = [];
+    let examGrades = [];
+    let homeworkGrades = [];
+    let studentAvgTotal = 0;
+    let studentAvgExam = 0;
+    let studentAvgHomework = 0;
+
+    const computeStudentAverage = () => {
+      const studentInputs = document.querySelectorAll('.studentInput');
+      studentInputs.forEach(studentInput => {
+        const studentAverageDisplay = document.createElement('p');
+        const average = (
+          parseFloat(studentInput.querySelector('.exam').value) * 2 +
+          parseFloat(studentInput.querySelector('.homework').value) * 3
+        ) / 5;
+        studentAverageDisplay.innerHTML = `Média do Aluno: ${average.toFixed(1)}`;
+        studentAvgs.push(average);
+        studentInput.appendChild(studentAverageDisplay);
+      });
+    };
+
+    const computeTotalAverage = () => {
+      return studentAvgs.reduce((acc, curr) => acc + curr, 0) / studentAvgs.length;
+    };
+
+    const computeExamAverage = () => {
+      const examInputs = document.querySelectorAll('.exam');
+      examInputs.forEach(examInput => {
+        examGrades.push(parseFloat(examInput.value));
+        studentAvgExam += parseFloat(examInput.value);
+      });
+      return studentAvgExam / examInputs.length;
+    };
+
+    const computeHomeworkAverage = () => {
+      const homeworkInputs = document.querySelectorAll('.homework');
+      homeworkInputs.forEach(homeworkInput => {
+        homeworkGrades.push(parseFloat(homeworkInput.value));
+        studentAvgHomework += parseFloat(homeworkInput.value);
+      });
+      return studentAvgHomework / homeworkInputs.length;
+    };
+
+    const handleSubmitGrades = () => {
+      computeStudentAverage();
+      studentAvgTotal = computeTotalAverage();
+      studentAvgExam =computeExamAverage();
+      studentAvgHomework =computeHomeworkAverage();
+
+      const studentAverageDisplay = document.createElement('p');
+      studentAverageDisplay.innerHTML = `Média Geral: ${studentAvgTotal.toFixed(1)}`;
+      document.querySelector('.studentInput').before(studentAverageDisplay);
+
+      const examAverageDisplay = document.createElement('p');
+      examAverageDisplay.innerHTML = `Média Aritmética das Notas de Prova: ${studentAvgExam.toFixed(1)}`;
+      document.querySelector('.studentInput').before(examAverageDisplay);
+
+      const homeworkAverageDisplay = document.createElement('p');
+      homeworkAverageDisplay.innerHTML = `Média Aritmética das Notas de Trabalho: ${studentAvgHomework.toFixed(1)}`;
+      document.querySelector('.studentInput').before(homeworkAverageDisplay);
+
+      const minExamDisplay = document.createElement('p');
+      minExamDisplay.innerHTML = `Menor Nota de Prova: ${Math.min(...examGrades)}`;
+      document.querySelector('.studentInput').before(minExamDisplay);
+
+      const maxExamDisplay = document.createElement('p');
+      maxExamDisplay.innerHTML = `Maior Nota de Prova: ${Math.max(...examGrades)}`;
+      document.querySelector('.studentInput').before(maxExamDisplay);
+
+      const minHomeworkDisplay = document.createElement('p');
+      minHomeworkDisplay.innerHTML = `Menor Nota de Trabalho: ${Math.min(...homeworkGrades)}`;
+      document.querySelector('.studentInput').before(minHomeworkDisplay);
+
+      const maxHomeworkDisplay = document.createElement('p');
+      maxHomeworkDisplay.innerHTML = `Maior Nota de Trabalho: ${Math.max(...homeworkGrades)}`;
+      document.querySelector('.studentInput').before(maxHomeworkDisplay);
+
+      submitGrades.remove();
+    }
+
+    const handleSubmitStudents = () => {
+      const studentsValue = document.querySelector('#students').value;
+      const submitStudents = document.querySelector('#submitStudents');
+      for (let i = 0; i < parseInt(studentsValue); i++) {
+        const studentInput = document.createElement('div');
+        studentInput.classList.add('studentInput');
+        studentInput.innerHTML = `
+          <label for="student${i}TestGrade">Aluno ${i + 1} - Nota Prova</label>
+          <input class="exam" style="margin: 10px;" type="text" id="student${i}Exam" name="student${i}TestGrade">
+          <label for="student${i}WorkGrade">Aluno ${i + 1} - Nota Trabalho</label>
+          <input class="homework" style="margin: 10px;" type="text" id="student${i}Homework" name="student${i}WorkGrade">
+        `;
+        document.querySelector('#students').before(studentInput);
+      }
+      submitStudents.remove();
+      const submitGradesBtn = document.createElement('button');
+      submitGradesBtn.innerHTML = 'Informar notas';
+      submitGradesBtn.setAttribute('id', 'submitGrades');
+      document.querySelector('#students').after(submitGradesBtn);
+      students.remove();
+
+      submitGrades.addEventListener('click', handleSubmitGrades);
+    }
+
+    submitStudents.addEventListener('click', handleSubmitStudents);
+  </script>
+</body>
+
+</html>
